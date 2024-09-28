@@ -30,7 +30,12 @@ public class ProductService {
                 .orElseThrow(() -> new EntityNotFoundException("No Prodcut found with ID:: " + prodId));
     }
     public PageResponse<ProductResponse> getProductsWithCompanyName(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
+        if(page == 0){
+            page = 1;
+        }else if(size == 0){
+            size = 1;
+        }
+        Pageable pageable = PageRequest.of(page-1, size);
         Page<ProductResponse> productPage = productRepo.findAllWithCompanyName(pageable);
 
         // Create and return PageResponse<ProductResponse>

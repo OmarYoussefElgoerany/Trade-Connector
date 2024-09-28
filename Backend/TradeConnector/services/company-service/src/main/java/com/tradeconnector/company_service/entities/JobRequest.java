@@ -15,9 +15,9 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @SuperBuilder
 public class JobRequest extends BaseEntity {
-
+    private String productName;
+    private int quantity;
     private String description;
-
     private String status;
 
     @ManyToOne
